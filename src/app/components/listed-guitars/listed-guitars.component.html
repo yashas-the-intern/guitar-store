@@ -1,0 +1,34 @@
+<mat-card>
+    <br>
+    <mat-card-title>Offshore Guitar Store</mat-card-title>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <mat-card-subtitle>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Search Guitar</mat-label>
+            <input [(ngModel)]="searchedValue" (input)="search()" matInput placeholder="Bass, Electric">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Sort By</mat-label>
+            <mat-select [(ngModel)]="selectedValue" (selectionChange)="sort()">
+                <mat-option value="price">Price</mat-option>
+                <mat-option value="name">Name</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-radio-group aria-label="SelectSort" (change)="sort()" [(ngModel)]="sortDirection">
+            <mat-radio-button value="ascending">Ascending</mat-radio-button>
+            <mat-radio-button value="descending">Descending</mat-radio-button>
+        </mat-radio-group>
+    </mat-card-subtitle>
+    <mat-divider></mat-divider>
+    <br>
+    <mat-card class="guitarcard">
+        <mat-card-title-group>
+          <mat-card-title>Bass</mat-card-title>
+          <!-- <mat-card-subtitle>Small</mat-card-subtitle> -->
+          <img mat-card-sm-image src="/assets/img/Bass.jpg" >
+        </mat-card-title-group>
+      </mat-card>
+</mat-card>

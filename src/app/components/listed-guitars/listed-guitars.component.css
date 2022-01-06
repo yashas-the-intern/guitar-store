@@ -1,0 +1,7 @@
+mat-card-title, mat-card-subtitle{
+    text-align: center;
+}
+
+mat-form-field, mat-radio-button{
+    margin: 0 1em;
+}
