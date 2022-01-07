@@ -50,12 +50,12 @@ export class DetailedGuitarComponent implements OnInit {
   }
 
   moveBack(): void {
-    this.guitarIndex === 0 ? this.guitarIndex = 3: this.guitarIndex -= 1;
+    this.guitarIndex === 0 ? (this.guitarIndex = this.guitars.length - 1) : this.guitarIndex -= 1;
     this.selectedGuitar = this.guitars[this.guitarIndex];
   }
 
   moveForward(): void {
-    this.guitarIndex === 3 ? this.guitarIndex = 0: this.guitarIndex += 1;
+    this.guitarIndex === (this.guitars.length - 1) ? this.guitarIndex = 0 : this.guitarIndex += 1;
     this.selectedGuitar = this.guitars[this.guitarIndex];
   }
 
