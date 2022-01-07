@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { OutletContext } from '@angular/router';
 import { Guitar,GuitarsService } from 'src/app/services/guitars.service'
 
 type PriceOrName = 'price' | 'name';
@@ -16,6 +17,7 @@ export class ListedGuitarsComponent implements OnInit {
   sortDirection: AscOrDec = 'ascending';
   guitars: Guitar[] = []
   manipulatedGuitars: Guitar[] = []; 
+  @Output() goToDetailsEvent: EventEmitter<string> = new EventEmitter();
 
   constructor(private gs:GuitarsService) { }
 
@@ -44,11 +46,15 @@ export class ListedGuitarsComponent implements OnInit {
         case 'name':
           return compare(a.name, b.name, isAsc);
         case 'price':
-          return compare(a.price, b.price, isAsc);
+          return compare(Number(a.price),Number(b.price), isAsc);
         default:
           return 0;
       }
     });
+  }
+
+  goToDetails(dateAdded: string): void {
+    this.goToDetailsEvent.emit(dateAdded);
   }
 
 
