@@ -24,7 +24,7 @@
     </mat-card-subtitle>
     <mat-divider></mat-divider>
     <br>
-    <mat-card *ngFor="let guitar of guitars" class="guitarcard">
+    <mat-card *ngFor="let guitar of manipulatedGuitars" class="guitarcard">
         <mat-card-title-group>
             <mat-card-title>{{ guitar.name }}</mat-card-title>
             <mat-card-subtitle>{{ guitar.description }}
