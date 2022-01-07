@@ -1,4 +1,5 @@
-import { Component, OnInit, Type } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Guitar,GuitarsService } from 'src/app/services/guitars.service'
 
 type PriceOrName = 'price' | 'name';
 type AscOrDec = 'ascending' | 'descending';
@@ -13,10 +14,12 @@ export class ListedGuitarsComponent implements OnInit {
   searchedValue: string = '';
   selectedValue: PriceOrName = 'price';
   sortDirection: AscOrDec = 'ascending';
+  guitars: Guitar[] = []
 
-  constructor() { }
+  constructor(private gs:GuitarsService) { }
 
   ngOnInit(): void {
+    this.gs.getTheData().subscribe((data: Guitar[])=> this.guitars = data);
   }
 
   search(): void {

@@ -1,10 +1,10 @@
 <mat-card>
     <br>
-    <mat-card-title>Offshore Guitar Store</mat-card-title>
+    <mat-card-title class="center-it">Offshore Guitar Store</mat-card-title>
     <br>
     <mat-divider></mat-divider>
     <br>
-    <mat-card-subtitle>
+    <mat-card-subtitle class="center-it">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Search Guitar</mat-label>
             <input [(ngModel)]="searchedValue" (input)="search()" matInput placeholder="Bass, Electric">
@@ -17,18 +17,24 @@
             </mat-select>
         </mat-form-field>
         <br>
-        <mat-radio-group aria-label="SelectSort" (change)="sort()" [(ngModel)]="sortDirection">
+        <mat-radio-group color="primary" aria-label="SelectSort" (change)="sort()" [(ngModel)]="sortDirection">
             <mat-radio-button value="ascending">Ascending</mat-radio-button>
             <mat-radio-button value="descending">Descending</mat-radio-button>
         </mat-radio-group>
     </mat-card-subtitle>
     <mat-divider></mat-divider>
     <br>
-    <mat-card class="guitarcard">
+    <mat-card *ngFor="let guitar of guitars" class="guitarcard">
         <mat-card-title-group>
-          <mat-card-title>Bass</mat-card-title>
-          <!-- <mat-card-subtitle>Small</mat-card-subtitle> -->
-          <img mat-card-sm-image src="/assets/img/Bass.jpg" >
+            <mat-card-title>{{ guitar.name }}</mat-card-title>
+            <mat-card-subtitle>{{ guitar.description }}
+                <h3 [ngStyle]="{'color':'#c2185b'}"><b>${{guitar.price}}</b></h3>
+            </mat-card-subtitle>
+            <img mat-card-sm-image src="/assets/img/{{ guitar.image}}.jpg">
         </mat-card-title-group>
-      </mat-card>
+        <mat-divider></mat-divider>
+    </mat-card>
+    <mat-card-footer>
+        <mat-progress-bar *ngIf="guitars.length===0" mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
 </mat-card>

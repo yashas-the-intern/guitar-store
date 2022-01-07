@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { ListedGuitarsComponent } from './components/listed-guitars/listed-guitars.component';
 import { DetailedGuitarComponent } from './components/detailed-guitar/detailed-guitar.component';
@@ -25,6 +27,7 @@ import { OrderedGuitarComponent } from './components/ordered-guitar/ordered-guit
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
@@ -32,6 +35,7 @@ import { OrderedGuitarComponent } from './components/ordered-guitar/ordered-guit
     MatSelectModule,
     MatRadioModule,
     MatDividerModule,
+    MatProgressBarModule,
     FormsModule
   ],
   providers: [],
