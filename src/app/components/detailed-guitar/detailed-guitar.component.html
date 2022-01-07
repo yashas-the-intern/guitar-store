@@ -1,5 +1,5 @@
 <mat-card class="detailed" *ngIf="selectedGuitar">
-    <br>
+
     <mat-card-title-group>
         <mat-card-title>{{ selectedGuitar.name }}</mat-card-title>
         <mat-card-subtitle>{{ selectedGuitar.description }}
@@ -18,7 +18,11 @@
     </section>
     <br>
     <mat-card-content *ngIf="showing==='description'">
-        {{selectedGuitar.longDescription}}
+        <mat-card>
+            <mat-card-subtitle>
+                {{selectedGuitar.longDescription}}
+            </mat-card-subtitle>
+        </mat-card>
     </mat-card-content>
 
     <mat-card-content class="containIt" *ngIf="showing==='specification'">
@@ -29,14 +33,62 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="showing==='review'">
-        
+        <mat-card *ngFor="let review of selectedGuitar.reviews">
+            <mat-card-title>Review Points: {{ review.star }}</mat-card-title>
+            <mat-card-subtitle>{{ review.body }} ~{{ review.name }}</mat-card-subtitle>
+            <mat-divider></mat-divider>
+        </mat-card>
+        <br>
+        <mat-card>
+            <h3>Add Review</h3>
+            <div class="flexit">
+                <mat-form-field [ngStyle]="{'flex':'1'}" appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input [(ngModel)]="reviewer" matInput placeholder="Yashas">
+                </mat-form-field>
+                <br>
+                <span [ngStyle]="{'flex':'1'}">Review Points:
+                    <mat-slider max="5" min="1" step="step" [(ngModel)]="reviewPoint" thumbLabel tickInterval="1">
+                    </mat-slider>
+                </span>
+                <br>
+            </div>
+            <div class="flexit">
+                <mat-form-field [ngStyle]="{'flex':'1'}" appearance="fill">
+                    <mat-label>How was you experience</mat-label>
+                    <textarea [(ngModel)]="review" matInput placeholder="It's the best"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="flexit">
+                <button [ngStyle]="{'flex':'1'}" (click)="onSubmit()" mat-stroked-button color="accent">Submit</button>
+            </div>
+
+
+
+        </mat-card>
     </mat-card-content>
 
     <br>
     <mat-card-content>
         <mat-card-actions>
-            <button [ngStyle]="{'flex':'1'}" (click)="goTo('listedComponent')" mat-raised-button color="accent">< Go Back to Search</button>
-            <button [ngStyle]="{'flex':'1'}" (click)="goTo('orderedComponent')" mat-raised-button color="primary">Checkout</button>
+            <button [ngStyle]="{'flex':'1'}" (click)="goTo('listedComponent')" mat-raised-button color="accent">
+                < Go Back to Search</button>
+                    <button [ngStyle]="{'flex':'1'}" (click)="goTo('orderedComponent')" mat-raised-button
+                        color="primary">Checkout</button>
         </mat-card-actions>
     </mat-card-content>
+
+    <mat-grid-list cols="2" rowHeight="40px">
+        <mat-grid-tile>
+            <button mat-icon-button (click)="moveBack()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-icon-button (click)="moveForward()">
+                <mat-icon>arrow_forward</mat-icon>
+            </button>
+        </mat-grid-tile>
+    </mat-grid-list>
+
 </mat-card>

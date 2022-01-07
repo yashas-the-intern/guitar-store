@@ -10,23 +10,53 @@ type show = 'description' | 'specification' | 'review';
 })
 export class DetailedGuitarComponent implements OnInit {
 
+  guitars: Guitar[];
   selectedGuitar: Guitar;
+  guitarIndex: number;
   showing: show = 'description';
+  reviewPoint: number;
+  reviewer: string;
+  review: string;
   @Input() guitarId: string = '';
   @Output() goToEvent: EventEmitter<string> = new EventEmitter();
 
-  constructor(private gs:GuitarsService) { }
+  constructor(private gs: GuitarsService) { }
 
   ngOnInit(): void {
     this.gs.getTheData()
-    .subscribe((guitars: Guitar[]) => { 
-      this.selectedGuitar = (guitars.find((guitar)=> guitar.dateAdded === this.guitarId)) as Guitar;
-      console.log(this.guitarId, this.selectedGuitar)
-    });
+      .subscribe((guitars: Guitar[]) => {
+        this.guitars = guitars;
+        this.guitarIndex = (this.guitars.findIndex((guitar) => guitar.dateAdded === this.guitarId)) as number;
+        this.selectedGuitar = this.guitars[this.guitarIndex];
+        // console.log(this.guitarId, this.selectedGuitar)
+      });
   }
 
-  goTo(where: string): void{
+  goTo(where: string): void {
     this.goToEvent.emit(where);
+  }
+
+  onSubmit(): void {
+    if (this.review && this.reviewer) {
+      this.selectedGuitar.reviews.push({
+        star: String(this.reviewPoint),
+        name: this.reviewer,
+        body: this.review
+      })
+    }
+    else {
+      alert('Please input the details');
+    }
+  }
+
+  moveBack(): void {
+    this.guitarIndex === 0 ? this.guitarIndex = 3: this.guitarIndex -= 1;
+    this.selectedGuitar = this.guitars[this.guitarIndex];
+  }
+
+  moveForward(): void {
+    this.guitarIndex === 3 ? this.guitarIndex = 0: this.guitarIndex += 1;
+    this.selectedGuitar = this.guitars[this.guitarIndex];
   }
 
 }

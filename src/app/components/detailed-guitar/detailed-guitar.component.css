@@ -3,7 +3,12 @@
     margin: 0 auto;
 }
 
-mat-card-actions{
+mat-card-actions, .flexit{
     display: flex;
     align-items: flex-start;
+    text-align: center;
+}
+
+.left{
+    text-align: left;
 }
