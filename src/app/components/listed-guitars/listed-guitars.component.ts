@@ -26,6 +26,7 @@ export class ListedGuitarsComponent implements OnInit {
     .subscribe((data: Guitar[])=> {
       this.guitars = data;
       this.manipulatedGuitars = this.guitars.slice();
+      this.sort();
     });
   }
 
