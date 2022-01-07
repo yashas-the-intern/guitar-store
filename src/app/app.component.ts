@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { gotoObject } from 'src/app/components/detailed-guitar/detailed-guitar.component';
 
 type show = 'listedComponent' | 'detailedComponent' | 'orderedComponent';
 
@@ -21,7 +22,10 @@ export class AppComponent implements OnInit {
     this.whatToShow = 'detailedComponent';
   }
 
-  goTo(where: string): void{
-    this.whatToShow = (where) as show;
+  goTo(goToObject: gotoObject): void{
+    this.whatToShow = (goToObject.where) as show;
+    if(goToObject.selectedGuitarId){
+      this.selectedGuitarId = goToObject.selectedGuitarId;
+    }
   }
 }

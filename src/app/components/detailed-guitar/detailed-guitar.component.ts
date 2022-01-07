@@ -2,6 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Guitar, GuitarsService } from 'src/app/services/guitars.service';
 
 type show = 'description' | 'specification' | 'review';
+export interface gotoObject {
+  where: string,
+  selectedGuitarId?: string
+}
 
 @Component({
   selector: 'app-detailed-guitar',
@@ -18,7 +22,7 @@ export class DetailedGuitarComponent implements OnInit {
   reviewer: string;
   review: string;
   @Input() guitarId: string = '';
-  @Output() goToEvent: EventEmitter<string> = new EventEmitter();
+  @Output() goToEvent: EventEmitter<gotoObject> = new EventEmitter();
 
   constructor(private gs: GuitarsService) { }
 
@@ -32,8 +36,8 @@ export class DetailedGuitarComponent implements OnInit {
       });
   }
 
-  goTo(where: string): void {
-    this.goToEvent.emit(where);
+  goTo(goToObject: gotoObject): void {
+    this.goToEvent.emit(goToObject);
   }
 
   onSubmit(): void {
