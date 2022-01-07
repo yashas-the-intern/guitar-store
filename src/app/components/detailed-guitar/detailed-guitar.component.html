@@ -1,1 +1,42 @@
-<p>detailed-guitar works!</p>
+<mat-card class="detailed" *ngIf="selectedGuitar">
+    <br>
+    <mat-card-title-group>
+        <mat-card-title>{{ selectedGuitar.name }}</mat-card-title>
+        <mat-card-subtitle>{{ selectedGuitar.description }}
+            <h3 [ngStyle]="{'color':'#c2185b'}"><b>${{selectedGuitar.price}}</b></h3>
+        </mat-card-subtitle>
+        <img mat-card-sm-image src="/assets/img/{{selectedGuitar.image}}.jpg">
+    </mat-card-title-group>
+    <mat-divider></mat-divider>
+    <section [ngStyle]="{'text-align':'center'}">
+        <mat-button-toggle-group [(ngModel)]="showing" aria-label="Font Style">
+            <mat-button-toggle value="description">&nbsp;Description&nbsp;</mat-button-toggle>
+            <mat-button-toggle value="specification">Specification</mat-button-toggle>
+            <mat-button-toggle value="review">{{ '&nbsp;'.repeat(3) }}Reviews{{ '&nbsp;'.repeat(3) }}
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </section>
+    <br>
+    <mat-card-content *ngIf="showing==='description'">
+        {{selectedGuitar.longDescription}}
+    </mat-card-content>
+
+    <mat-card-content class="containIt" *ngIf="showing==='specification'">
+        <h2>{{selectedGuitar.specifications}} {{selectedGuitar.name}}</h2>
+        Category : {{selectedGuitar.category.toUpperCase()}}
+        <br>
+        Availability : {{selectedGuitar.soldOut==="false" ? 'In stock' : 'Out of stock'}}
+    </mat-card-content>
+
+    <mat-card-content *ngIf="showing==='review'">
+        
+    </mat-card-content>
+
+    <br>
+    <mat-card-content>
+        <mat-card-actions>
+            <button [ngStyle]="{'flex':'1'}" (click)="goTo('listedComponent')" mat-raised-button color="accent">< Go Back to Search</button>
+            <button [ngStyle]="{'flex':'1'}" (click)="goTo('orderedComponent')" mat-raised-button color="primary">Checkout</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>

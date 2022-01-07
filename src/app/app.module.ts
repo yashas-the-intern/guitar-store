@@ -13,6 +13,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatButtonModule} from '@angular/material/button';
 
 import { ListedGuitarsComponent } from './components/listed-guitars/listed-guitars.component';
 import { DetailedGuitarComponent } from './components/detailed-guitar/detailed-guitar.component';
@@ -36,7 +38,9 @@ import { OrderedGuitarComponent } from './components/ordered-guitar/ordered-guit
     MatRadioModule,
     MatDividerModule,
     MatProgressBarModule,
-    FormsModule
+    MatButtonToggleModule,
+    MatButtonModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

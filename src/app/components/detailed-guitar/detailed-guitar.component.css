@@ -1,0 +1,9 @@
+.containIt{
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+mat-card-actions{
+    display: flex;
+    align-items: flex-start;
+}

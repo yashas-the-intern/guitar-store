@@ -1,3 +1,5 @@
 <div class="container">
-    <app-listed-guitars (goToDetailsEvent)="goToDetails($event)"></app-listed-guitars>
+    <app-listed-guitars *ngIf="whatToShow==='listedComponent'" (goToDetailsEvent)="goToDetails($event)"></app-listed-guitars>
+    <app-detailed-guitar *ngIf="whatToShow==='detailedComponent'" (goToEvent)="goTo($event)" [guitarId]="selectedGuitarId"></app-detailed-guitar>
+    <app-ordered-guitar *ngIf="whatToShow==='orderedComponent'"></app-ordered-guitar>
 </div>
