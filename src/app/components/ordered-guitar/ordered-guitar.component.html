@@ -1,1 +1,16 @@
-<p>ordered-guitar works!</p>
+<mat-card *ngIf="selectedGuitar">
+    <mat-card-title-group>
+        <mat-card-title>{{ selectedGuitar.name }}</mat-card-title>
+        <mat-card-subtitle>{{ selectedGuitar.description }}
+            <h3 [ngStyle]="{'color':'#c2185b'}"><b>${{ selectedGuitar.price }}</b></h3>
+        </mat-card-subtitle>
+        <img mat-card-sm-image src="/assets/img/{{ selectedGuitar.image }}.jpg">
+    </mat-card-title-group>
+    <mat-card-content>
+        Thanks for shopping with us, you've just ordered a {{ selectedGuitar.name }}.
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <br>
+    <button (click)="goTo({where:'listedComponent'})" mat-stroked-button color="accent">
+        < Go Back to Search</button>
+</mat-card>

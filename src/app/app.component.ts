@@ -9,9 +9,9 @@ type show = 'listedComponent' | 'detailedComponent' | 'orderedComponent';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'OffshoreGuitarStore';
+  title = 'Yashas\' Guitar Store';
   whatToShow: show = 'listedComponent';
-  selectedGuitarId: string = ''
+  selectedGuitarId: string = '';
 
   constructor(){}
 

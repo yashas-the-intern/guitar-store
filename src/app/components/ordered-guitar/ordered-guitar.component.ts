@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Guitar, GuitarsService } from 'src/app/services/guitars.service';
+import { gotoObject } from '../detailed-guitar/detailed-guitar.component';
 
 @Component({
   selector: 'app-ordered-guitar',
@@ -7,12 +9,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OrderedGuitarComponent implements OnInit {
 
-  @Input() guitarId: string = '';
+  selectedGuitar: Guitar;
+  @Input() guitarId: string;
+  @Output() goToEvent: EventEmitter<gotoObject> = new EventEmitter();
 
-  constructor() { }
+  constructor(private gs: GuitarsService) { }
 
   ngOnInit(): void {
-    console.log(this.guitarId)
+    this.gs.getTheData()
+      .subscribe((guitars: Guitar[]) => {
+        this.selectedGuitar = (guitars.find((guitar) => guitar.dateAdded === this.guitarId)) as Guitar;
+      });
+  }
+
+  goTo(goToObject: gotoObject): void{
+    this.goToEvent.emit(goToObject);
   }
 
 }
+
