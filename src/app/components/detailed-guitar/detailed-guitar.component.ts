@@ -47,6 +47,9 @@ export class DetailedGuitarComponent implements OnInit {
         name: this.reviewer,
         body: this.review
       })
+      this.reviewPoint = 1;
+      this.review = '';
+      this.reviewer = '';
     }
     else {
       alert('Please input the details');
