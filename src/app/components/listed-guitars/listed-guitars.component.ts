@@ -39,7 +39,9 @@ export class ListedGuitarsComponent implements OnInit {
 
   sort(): void {
 
-    const data = this.guitars.slice();
+    const data = (this.searchedValue === '') ? 
+                    this.guitars.slice() : 
+                    this.manipulatedGuitars.slice();
 
     this.manipulatedGuitars = data.sort((a, b) => {
       const isAsc = this.sortDirection === 'ascending';
