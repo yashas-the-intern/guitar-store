@@ -24,8 +24,11 @@
     </mat-card-subtitle>
     <mat-divider></mat-divider>
     <br>
+
+    <!-- Guitar list -->
     <mat-card *ngFor="let guitar of manipulatedGuitars" class="guitarcard">
-        <mat-card-title-group [ngStyle]="{'cursor':'pointer'}" (click)="goToDetails(guitar.dateAdded)">
+        <mat-card-title-group [ngStyle]="{'cursor':'pointer'}"
+            (click)="goTo({selectedGuitarId:guitar.dateAdded, where:'detailedComponent'})">
             <mat-card-title>{{ guitar.name }}</mat-card-title>
             <mat-card-subtitle>{{ guitar.description }}
                 <h3 [ngStyle]="{'color':'#c2185b'}"><b>${{guitar.price}}</b></h3>
@@ -33,14 +36,18 @@
             <img mat-card-sm-image src="/assets/img/{{guitar.image}}.jpg">
         </mat-card-title-group>
         <mat-divider></mat-divider>
+
+        <!-- Fab Button -->
+        <div class="fab-container">
+            <button mat-fab color="primary"
+                (click)="goTo({where:'addOrEditComponent'})">
+                <mat-icon>playlist_add</mat-icon>
+            </button>
+        </div>
+
     </mat-card>
+
     <mat-card-footer>
         <mat-progress-bar *ngIf="guitars.length===0" mode="indeterminate"></mat-progress-bar>
     </mat-card-footer>
 </mat-card>
-
-<div class="fab-container">
-    <button mat-fab color="primary">
-        <mat-icon>playlist_add</mat-icon>
-    </button>
-</div>

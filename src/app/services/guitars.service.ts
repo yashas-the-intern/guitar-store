@@ -21,6 +21,11 @@ export interface Guitar {
     reviews : Review[]
 }
 
+export interface gotoObject {
+  where: string,
+  selectedGuitarId?: string
+}
+
 @Injectable({
   providedIn: 'root'
 })

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Guitar, GuitarsService } from 'src/app/services/guitars.service';
-import { gotoObject } from '../detailed-guitar/detailed-guitar.component';
+import { Guitar, GuitarsService, gotoObject } from 'src/app/services/guitars.service';
 
 @Component({
   selector: 'app-ordered-guitar',

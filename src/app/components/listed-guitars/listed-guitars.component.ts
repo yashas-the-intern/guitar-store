@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { OutletContext } from '@angular/router';
-import { Guitar,GuitarsService } from 'src/app/services/guitars.service'
+import { Guitar,GuitarsService, gotoObject } from 'src/app/services/guitars.service'
 
 type PriceOrName = 'price' | 'name';
 type AscOrDec = 'ascending' | 'descending';
@@ -17,7 +16,7 @@ export class ListedGuitarsComponent implements OnInit {
   sortDirection: AscOrDec = 'ascending';
   guitars: Guitar[] = []
   manipulatedGuitars: Guitar[] = []; 
-  @Output() goToDetailsEvent: EventEmitter<string> = new EventEmitter();
+  @Output() goToEvent: EventEmitter<gotoObject> = new EventEmitter();
 
   constructor(private gs:GuitarsService) { }
 
@@ -56,10 +55,9 @@ export class ListedGuitarsComponent implements OnInit {
     });
   }
 
-  goToDetails(dateAdded: string): void {
-    this.goToDetailsEvent.emit(dateAdded);
+  goTo(goToObject: gotoObject): void {
+    this.goToEvent.emit(goToObject);
   }
-
 
 }
 

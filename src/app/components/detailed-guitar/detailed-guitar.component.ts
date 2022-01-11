@@ -1,11 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Guitar, GuitarsService } from 'src/app/services/guitars.service';
+import { Guitar, GuitarsService, gotoObject } from 'src/app/services/guitars.service';
 
 type show = 'description' | 'specification' | 'review';
-export interface gotoObject {
-  where: string,
-  selectedGuitarId?: string
-}
 
 @Component({
   selector: 'app-detailed-guitar',

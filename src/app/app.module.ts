@@ -22,13 +22,15 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { ListedGuitarsComponent } from './components/listed-guitars/listed-guitars.component';
 import { DetailedGuitarComponent } from './components/detailed-guitar/detailed-guitar.component';
 import { OrderedGuitarComponent } from './components/ordered-guitar/ordered-guitar.component';
+import { AddOrEditGuitarComponent } from './components/add-or-edit-guitar/add-or-edit-guitar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListedGuitarsComponent,
     DetailedGuitarComponent,
-    OrderedGuitarComponent
+    OrderedGuitarComponent,
+    AddOrEditGuitarComponent
   ],
   imports: [
     BrowserModule,

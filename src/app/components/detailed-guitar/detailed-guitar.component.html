@@ -95,7 +95,8 @@
 </mat-card>
 
 <div class="fab-container">
-    <button mat-fab color="primary">
+    <button mat-fab color="primary"
+        (click)="goTo({selectedGuitarId: selectedGuitar.dateAdded, where:'addOrEditComponent'})">
         <mat-icon>edit</mat-icon>
     </button>
 </div>

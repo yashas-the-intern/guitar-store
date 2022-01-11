@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { gotoObject } from 'src/app/components/detailed-guitar/detailed-guitar.component';
+import { gotoObject } from 'src/app/services/guitars.service';
 
-type show = 'listedComponent' | 'detailedComponent' | 'orderedComponent';
+type show = 'listedComponent' | 'detailedComponent' | 'orderedComponent' | 'addOrEditComponent';
 
 @Component({
   selector: 'app-root',
@@ -11,16 +11,13 @@ type show = 'listedComponent' | 'detailedComponent' | 'orderedComponent';
 export class AppComponent implements OnInit {
   title = 'Yashas\' Guitar Store';
   whatToShow: show = 'listedComponent';
+  // whatToShow: show = 'addOrEditComponent';
+  
   selectedGuitarId: string = '';
 
   constructor(){}
 
   ngOnInit(){}
-
-  goToDetails(dateAdded:string): void {
-    this.selectedGuitarId = dateAdded;
-    this.whatToShow = 'detailedComponent';
-  }
 
   goTo(goToObject: gotoObject): void{
     this.whatToShow = (goToObject.where) as show;
