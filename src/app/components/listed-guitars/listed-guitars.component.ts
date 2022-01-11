@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Guitar,GuitarsService, gotoObject } from 'src/app/services/guitars.service'
+import { Guitar, GuitarsService, gotoObject } from 'src/app/services/guitars.service'
 
 type PriceOrName = 'price' | 'name';
 type AscOrDec = 'ascending' | 'descending';
@@ -15,32 +15,32 @@ export class ListedGuitarsComponent implements OnInit {
   selectedValue: PriceOrName = 'price';
   sortDirection: AscOrDec = 'ascending';
   guitars: Guitar[] = []
-  manipulatedGuitars: Guitar[] = []; 
+  manipulatedGuitars: Guitar[] = [];
   @Output() goToEvent: EventEmitter<gotoObject> = new EventEmitter();
 
-  constructor(private gs:GuitarsService) { }
+  constructor(private gs: GuitarsService) { }
 
   ngOnInit(): void {
     this.gs.getTheData()
-    .subscribe((data: Guitar[])=> {
-      this.guitars = data;
-      this.manipulatedGuitars = this.guitars.slice();
-      this.sort();
-    });
+      .subscribe((data: Guitar[]) => {
+        this.guitars = data;
+        this.manipulatedGuitars = this.guitars.slice();
+        this.sort();
+      });
   }
 
   search(): void {
     this.manipulatedGuitars = this.guitars.filter((guitar) => {
-      return ( guitar.name.toLowerCase().includes(this.searchedValue.toLowerCase()) ||
-               guitar.description.toLowerCase().includes(this.searchedValue.toLowerCase()) )       
+      return (guitar.name.toLowerCase().includes(this.searchedValue.toLowerCase()) ||
+        guitar.description.toLowerCase().includes(this.searchedValue.toLowerCase()))
     });
   }
 
   sort(): void {
 
-    const data = (this.searchedValue === '') ? 
-                    this.guitars.slice() : 
-                    this.manipulatedGuitars.slice();
+    const data = (this.searchedValue === '') ?
+      this.guitars.slice() :
+      this.manipulatedGuitars.slice();
 
     this.manipulatedGuitars = data.sort((a, b) => {
       const isAsc = this.sortDirection === 'ascending';
@@ -48,7 +48,7 @@ export class ListedGuitarsComponent implements OnInit {
         case 'name':
           return compare(a.name, b.name, isAsc);
         case 'price':
-          return compare(Number(a.price),Number(b.price), isAsc);
+          return compare(Number(a.price), Number(b.price), isAsc);
         default:
           return 0;
       }

@@ -21,7 +21,7 @@ export class OrderedGuitarComponent implements OnInit {
       });
   }
 
-  goTo(goToObject: gotoObject): void{
+  goTo(goToObject: gotoObject): void {
     this.goToEvent.emit(goToObject);
   }
 

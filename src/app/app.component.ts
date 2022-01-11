@@ -12,16 +12,16 @@ export class AppComponent implements OnInit {
   title = 'Yashas\' Guitar Store';
   whatToShow: show = 'listedComponent';
   // whatToShow: show = 'addOrEditComponent';
-  
+
   selectedGuitarId: string = '';
 
-  constructor(){}
+  constructor() { }
 
-  ngOnInit(){}
+  ngOnInit() { }
 
-  goTo(goToObject: gotoObject): void{
+  goTo(goToObject: gotoObject): void {
     this.whatToShow = (goToObject.where) as show;
-    if(goToObject.selectedGuitarId){
+    if (goToObject.selectedGuitarId) {
       this.selectedGuitarId = goToObject.selectedGuitarId;
     }
   }

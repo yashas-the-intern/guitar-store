@@ -1,6 +1,9 @@
 <div class="container">
     <app-listed-guitars *ngIf="whatToShow==='listedComponent'" (goToEvent)="goTo($event)"></app-listed-guitars>
-    <app-detailed-guitar *ngIf="whatToShow==='detailedComponent'" (goToEvent)="goTo($event)" [guitarId]="selectedGuitarId"></app-detailed-guitar>
-    <app-ordered-guitar *ngIf="whatToShow==='orderedComponent'" (goToEvent)="goTo($event)" [guitarId]="selectedGuitarId"></app-ordered-guitar>
-    <app-add-or-edit-guitar *ngIf="whatToShow==='addOrEditComponent'" [guitarId]="selectedGuitarId"></app-add-or-edit-guitar>
+    <app-detailed-guitar *ngIf="whatToShow==='detailedComponent'" (goToEvent)="goTo($event)"
+        [guitarId]="selectedGuitarId"></app-detailed-guitar>
+    <app-ordered-guitar *ngIf="whatToShow==='orderedComponent'" (goToEvent)="goTo($event)"
+        [guitarId]="selectedGuitarId"></app-ordered-guitar>
+    <app-add-or-edit-guitar *ngIf="whatToShow==='addOrEditComponent'" [guitarId]="selectedGuitarId">
+    </app-add-or-edit-guitar>
 </div>

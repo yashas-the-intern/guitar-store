@@ -3,22 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Review {
-  star : string,
-  body : string,
-  name : string
+  star: string,
+  body: string,
+  name: string
 }
 
 export interface Guitar {
-    name: string
-    description: string,
-    longDescription : string,
-    image: string,
-    price: string,
-    specifications: string,
-    dateAdded: string,
-    category: string,
-    soldOut: string,
-    reviews : Review[]
+  name: string
+  description: string,
+  longDescription: string,
+  image: string,
+  price: string,
+  specifications: string,
+  dateAdded: string,
+  category: string,
+  soldOut: string,
+  reviews: Review[]
 }
 
 export interface gotoObject {
@@ -31,10 +31,10 @@ export interface gotoObject {
 })
 export class GuitarsService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getTheData():Observable<Guitar[]>{
-      return this.http.get<Guitar[]>('/assets/data.json')
+  getTheData(): Observable<Guitar[]> {
+    return this.http.get<Guitar[]>('/assets/data.json')
   }
-  
+
 }
