@@ -19,6 +19,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { ListedGuitarsComponent } from './components/listed-guitars/listed-guitars.component';
 import { DetailedGuitarComponent } from './components/detailed-guitar/detailed-guitar.component';
@@ -50,6 +51,7 @@ import { AddOrEditGuitarComponent } from './components/add-or-edit-guitar/add-or
     MatIconModule,
     MatGridListModule,
     MatTooltipModule,
+    MatCheckboxModule,
     FormsModule,
   ],
   providers: [],

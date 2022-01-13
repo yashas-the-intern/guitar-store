@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Guitar, GuitarsService } from 'src/app/services/guitars.service';
 
 type stateType = 'add' | 'edit';
 
@@ -10,13 +11,43 @@ type stateType = 'add' | 'edit';
 export class AddOrEditGuitarComponent implements OnInit {
 
   state: stateType;
-  @Input() guitarId? : string; 
+  formObject: Guitar;
+  @Input() guitarId?: string;
+  @ViewChild('imgOutput') imgOutput: ElementRef;
 
-  constructor() { }
+  constructor(private gs: GuitarsService) { }
 
   ngOnInit(): void {
-    this.state = this.guitarId ? 'edit' : 'add';
-    
+    if (this.guitarId) {
+      this.state = 'edit';
+      this.gs.getTheData().subscribe((guitars: Guitar[]) => {
+        this.formObject = (guitars.find((guitar) => guitar.dateAdded === this.guitarId)) as Guitar;
+        const imagelink = `/assets/img/${this.formObject.image}.jpg`;
+        this.imgOutput.nativeElement.src = imagelink;
+      });
+    }
+    else {
+      this.state = 'add';
+      this.formObject = {
+        name: '', description: '', longDescription: '', image: '',
+        price: '', specifications: '', dateAdded: '', category: '',
+        soldOut: '', reviews: []
+      };
+
+    }
+  }
+
+  public onSubmit(): void {
+    console.log(this.formObject);
+  }
+
+  public checkBoxChanged(): void {
+    this.formObject.soldOut = this.formObject.soldOut == 'false' ? 'true' : 'false';
+  }
+
+  public selectFile(event: any): void {
+    const imagelink = window.URL.createObjectURL(event.target.files[0])
+    this.imgOutput.nativeElement.src = imagelink;
   }
 
 }

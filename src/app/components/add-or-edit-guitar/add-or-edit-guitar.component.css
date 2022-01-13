@@ -1,0 +1,18 @@
+.flexit{
+    display: flex;
+    align-items: flex-start;
+}
+
+.flexit > mat-form-field{
+    flex: 1;
+}
+
+.flexit > mat-checkbox{
+    flex: 1;
+    padding: 13.5px 0;
+    padding-left: 10px;
+    padding-right: -10px;
+    background-color: rgba(255,255,255,.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 3.5px 3.5px 0 0;
+}
