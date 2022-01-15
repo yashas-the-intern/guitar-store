@@ -74,7 +74,7 @@
             <button [ngStyle]="{'flex':'1'}" (click)="goTo({where:'listedComponent'})" mat-raised-button color="accent">
                 < Go Back to Search</button>
                     <button [ngStyle]="{'flex':'1'}"
-                        (click)="goTo({where:'orderedComponent', selectedGuitarId: selectedGuitar.dateAdded})"
+                        (click)="goTo({where:'orderedComponent', selectedGuitarId: selectedGuitar.guitar_id.toString()})"
                         mat-raised-button color="primary">Checkout</button>
         </mat-card-actions>
     </mat-card-content>
