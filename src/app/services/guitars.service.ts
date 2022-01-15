@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 
 export interface Review {
   star: string,
@@ -9,6 +9,7 @@ export interface Review {
 }
 
 export interface Guitar {
+  guitar_id: number;
   name: string
   description: string,
   longDescription: string,
@@ -18,7 +19,7 @@ export interface Guitar {
   dateAdded: string,
   category: string,
   soldOut: string,
-  reviews: Review[]
+  // reviews: Review[]
 }
 
 export interface gotoObject {
@@ -33,8 +34,12 @@ export class GuitarsService {
 
   constructor(private http: HttpClient) { }
 
-  getTheData(): Observable<Guitar[]> {
-    return this.http.get<Guitar[]>('/assets/data.json')
+  getTheGuitars(): Observable<Guitar[]> {
+    return this.http.get<Guitar[]>('http://localhost:3000/guitars/');
+  }
+
+  getAGuitar(id: string): Observable<Guitar> {
+    return this.http.get<Guitar>(`http://localhost:3000/guitars/${id}`);
   }
 
 }

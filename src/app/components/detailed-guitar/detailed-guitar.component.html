@@ -5,7 +5,7 @@
         <mat-card-subtitle>{{ selectedGuitar.description }}
             <h3 [ngStyle]="{'color':'#c2185b'}"><b>${{selectedGuitar.price}}</b></h3>
         </mat-card-subtitle>
-        <img mat-card-sm-image src="/assets/img/{{selectedGuitar.image}}.jpg">
+        <img mat-card-sm-image src="{{selectedGuitar.image}}">
     </mat-card-title-group>
     <mat-divider></mat-divider>
     <section [ngStyle]="{'text-align':'center'}">
@@ -33,11 +33,11 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="showing==='review'">
-        <mat-card *ngFor="let review of selectedGuitar.reviews">
+        <!-- <mat-card *ngFor="let review of selectedGuitar.reviews">
             <mat-card-title>Review Points: {{ review.star }}</mat-card-title>
             <mat-card-subtitle>{{ review.body }} ~{{ review.name }}</mat-card-subtitle>
             <mat-divider></mat-divider>
-        </mat-card>
+        </mat-card> -->
         <br>
         <mat-card>
             <h3>Add Review</h3>

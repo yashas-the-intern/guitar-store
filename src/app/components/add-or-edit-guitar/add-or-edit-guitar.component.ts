@@ -20,7 +20,7 @@ export class AddOrEditGuitarComponent implements OnInit {
   ngOnInit(): void {
     if (this.guitarId) {
       this.state = 'edit';
-      this.gs.getTheData().subscribe((guitars: Guitar[]) => {
+      this.gs.getTheGuitars().subscribe((guitars: Guitar[]) => {
         this.formObject = (guitars.find((guitar) => guitar.dateAdded === this.guitarId)) as Guitar;
         const imagelink = `/assets/img/${this.formObject.image}.jpg`;
         this.imgOutput.nativeElement.src = imagelink;
@@ -29,9 +29,10 @@ export class AddOrEditGuitarComponent implements OnInit {
     else {
       this.state = 'add';
       this.formObject = {
+        guitar_id: 0,
         name: '', description: '', longDescription: '', image: '',
         price: '', specifications: '', dateAdded: '', category: '',
-        soldOut: '', reviews: []
+        soldOut: ''
       };
 
     }

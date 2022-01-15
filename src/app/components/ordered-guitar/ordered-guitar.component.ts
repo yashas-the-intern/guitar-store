@@ -15,7 +15,7 @@ export class OrderedGuitarComponent implements OnInit {
   constructor(private gs: GuitarsService) { }
 
   ngOnInit(): void {
-    this.gs.getTheData()
+    this.gs.getTheGuitars()
       .subscribe((guitars: Guitar[]) => {
         this.selectedGuitar = (guitars.find((guitar) => guitar.dateAdded === this.guitarId)) as Guitar;
       });

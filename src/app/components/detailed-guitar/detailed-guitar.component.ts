@@ -10,9 +10,8 @@ type show = 'description' | 'specification' | 'review';
 })
 export class DetailedGuitarComponent implements OnInit {
 
-  guitars: Guitar[];
+  guitarsLength: number;
   selectedGuitar: Guitar;
-  guitarIndex: number;
   showing: show = 'description';
   reviewPoint: number;
   reviewer: string;
@@ -23,13 +22,14 @@ export class DetailedGuitarComponent implements OnInit {
   constructor(private gs: GuitarsService) { }
 
   ngOnInit(): void {
-    this.gs.getTheData()
-      .subscribe((guitars: Guitar[]) => {
-        this.guitars = guitars;
-        this.guitarIndex = (this.guitars.findIndex((guitar) => guitar.dateAdded === this.guitarId)) as number;
-        this.selectedGuitar = this.guitars[this.guitarIndex];
-        // console.log(this.guitarId, this.selectedGuitar)
+    this.gs.getAGuitar(this.guitarId)
+      .subscribe((guitar: Guitar) => {
+        this.selectedGuitar = guitar;
       });
+    this.gs.getTheGuitars()
+      .subscribe((guitars: Guitar[]) => {
+        this.guitarsLength = guitars.length;
+      })
   }
 
   goTo(goToObject: gotoObject): void {
@@ -38,11 +38,11 @@ export class DetailedGuitarComponent implements OnInit {
 
   onSubmit(): void {
     if (this.review && this.reviewer) {
-      this.selectedGuitar.reviews.push({
-        star: String(this.reviewPoint),
-        name: this.reviewer,
-        body: this.review
-      })
+      // this.selectedGuitar.reviews.push({
+      //   star: String(this.reviewPoint),
+      //   name: this.reviewer,
+      //   body: this.review
+      // })
       this.reviewPoint = 1;
       this.review = '';
       this.reviewer = '';
@@ -53,13 +53,19 @@ export class DetailedGuitarComponent implements OnInit {
   }
 
   moveBack(): void {
-    this.guitarIndex === 0 ? (this.guitarIndex = this.guitars.length - 1) : this.guitarIndex -= 1;
-    this.selectedGuitar = this.guitars[this.guitarIndex];
+    const sgi = this.selectedGuitar.guitar_id;
+    const previousGuitarId = (sgi === 1) ? this.guitarsLength : sgi - 1;
+    
+    this.guitarId = previousGuitarId.toString();
+    this.ngOnInit();
   }
 
   moveForward(): void {
-    this.guitarIndex === (this.guitars.length - 1) ? this.guitarIndex = 0 : this.guitarIndex += 1;
-    this.selectedGuitar = this.guitars[this.guitarIndex];
+    const sgi = this.selectedGuitar.guitar_id;
+    const nextGuitarId = (sgi === this.guitarsLength) ? 1 : sgi + 1;
+    
+    this.guitarId = nextGuitarId.toString();
+    this.ngOnInit();
   }
 
 }

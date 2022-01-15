@@ -21,7 +21,7 @@ export class ListedGuitarsComponent implements OnInit {
   constructor(private gs: GuitarsService) { }
 
   ngOnInit(): void {
-    this.gs.getTheData()
+    this.gs.getTheGuitars()
       .subscribe((data: Guitar[]) => {
         this.guitars = data;
         this.manipulatedGuitars = this.guitars.slice();
