@@ -33,11 +33,11 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="showing==='review'">
-        <!-- <mat-card *ngFor="let review of selectedGuitar.reviews">
+        <mat-card *ngFor="let review of reviews">
             <mat-card-title>Review Points: {{ review.star }}</mat-card-title>
             <mat-card-subtitle>{{ review.body }} ~{{ review.name }}</mat-card-subtitle>
             <mat-divider></mat-divider>
-        </mat-card> -->
+        </mat-card>
         <br>
         <mat-card>
             <h3>Add Review</h3>

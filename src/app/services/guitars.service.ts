@@ -5,7 +5,8 @@ import { Observable, retry } from 'rxjs';
 export interface Review {
   star: string,
   body: string,
-  name: string
+  name: string,
+  guitar_id: number
 }
 
 export interface Guitar {
@@ -19,7 +20,6 @@ export interface Guitar {
   dateAdded: string,
   category: string,
   soldOut: string,
-  // reviews: Review[]
 }
 
 export interface gotoObject {
@@ -40,6 +40,20 @@ export class GuitarsService {
 
   getAGuitar(id: string): Observable<Guitar> {
     return this.http.get<Guitar>(`http://localhost:3000/guitars/${id}`);
+  }
+
+  getReviews(guitarId: string): Observable<Review[]> {
+    return this.http.get<Review[]>(`http://localhost:3000/reviews-of-guitar/${guitarId}`);
+  }
+
+  postReview(reviewObject: Review): Observable<Review> {
+    return this.http.post<Review>('http://localhost:3000/reviews/', 
+      {
+        star: reviewObject.star,
+        name: reviewObject.name,
+        body: reviewObject.body,
+        guitarId: reviewObject.guitar_id
+      });
   }
 
 }
