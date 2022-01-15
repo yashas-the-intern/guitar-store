@@ -1,7 +1,7 @@
 <mat-card>
     <h2 [ngStyle]="{'text-align':'center'}">{{state.toUpperCase()}} Guitar
         <br>
-        <img #imgOutput *ngIf="formObject.image" [src]="formObject.image" width="100" alt="">
+        <img *ngIf="formObject" [src]="formObject.image" width="100" alt="">
     </h2>
 </mat-card>
 <mat-card *ngIf="formObject">
@@ -49,7 +49,5 @@
     <div class="flexit">
         <button [ngStyle]="{'flex':'1'}" (click)="onSubmit()" mat-stroked-button color="primary">Submit</button>
     </div>
-
-
 
 </mat-card>

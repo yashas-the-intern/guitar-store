@@ -14,17 +14,15 @@ export class AddOrEditGuitarComponent implements OnInit {
   formObject: Guitar;
   @Input() guitarId?: string;
   @Output() goToEvent: EventEmitter<gotoObject> = new EventEmitter();
-  @ViewChild('imgOutput') imgOutput: ElementRef;
 
   constructor(private gs: GuitarsService) { }
 
   ngOnInit(): void {
     if (this.guitarId) {
       this.state = 'edit';
-      this.gs.getTheGuitars().subscribe((guitars: Guitar[]) => {
-        this.formObject = (guitars.find((guitar) => guitar.dateAdded === this.guitarId)) as Guitar;
-        const imagelink = `/assets/img/${this.formObject.image}.jpg`;
-        this.imgOutput.nativeElement.src = imagelink;
+
+      this.gs.getAGuitar(this.guitarId).subscribe((guitar: Guitar) => {
+        this.formObject = guitar;
       });
     }
     else {
@@ -41,19 +39,20 @@ export class AddOrEditGuitarComponent implements OnInit {
 
   public onSubmit(): void {
 
-    if(!this.formObject.name || !this.formObject.price || !this.formObject.description){
+    if (!this.formObject.name || !this.formObject.price || !this.formObject.description) {
       alert('Enter the details correctly');
       return;
     }
 
     if (this.state === 'add') {
       this.gs.postGuitar(this.formObject).subscribe((guitar: Guitar) => {
-        console.log(guitar);
         this.goToEvent.emit({ where: 'listedComponent' });
       })
     }
-    else{
-      
+    else {
+      this.gs.putGuitar(this.formObject).subscribe((guitar: Guitar) => {
+        this.goToEvent.emit({ where: 'detailedComponent', selectedGuitarId: this.guitarId });
+      })
     }
   }
 

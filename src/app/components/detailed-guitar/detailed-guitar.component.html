@@ -96,7 +96,7 @@
 
 <div class="fab-container">
     <button mat-fab color="primary" matTooltip="Edit this guitar" matTooltipPosition="above" matTooltipHideDelay="1500"
-        (click)="goTo({selectedGuitarId: selectedGuitar.dateAdded, where:'addOrEditComponent'})">
+        (click)="goTo({where: 'addOrEditComponent', selectedGuitarId: selectedGuitar.guitar_id.toString()})">
         <mat-icon>edit</mat-icon>
     </button>
 </div>

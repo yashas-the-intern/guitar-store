@@ -70,4 +70,19 @@ export class GuitarsService {
     })
   }
 
+  putGuitar(formObject: Guitar): Observable<Guitar>{
+    return this.http.put<Guitar>(`http://localhost:3000/guitars/${formObject.guitar_id}`,
+    {
+      id: formObject.guitar_id,
+      name: formObject.name,
+      description: formObject.description,
+      longDescription: formObject.longDescription,
+      image: formObject.image,
+      price: formObject.price,
+      specifications: formObject.specifications,
+      category: formObject.category,
+      soldOut: formObject.soldOut
+    });
+  }
+
 }
