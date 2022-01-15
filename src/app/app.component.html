@@ -4,6 +4,6 @@
         [guitarId]="selectedGuitarId"></app-detailed-guitar>
     <app-ordered-guitar *ngIf="whatToShow==='orderedComponent'" (goToEvent)="goTo($event)"
         [guitarId]="selectedGuitarId"></app-ordered-guitar>
-    <app-add-or-edit-guitar *ngIf="whatToShow==='addOrEditComponent'" [guitarId]="selectedGuitarId">
+    <app-add-or-edit-guitar *ngIf="whatToShow==='addOrEditComponent'" (goToEvent)="goTo($event)" [guitarId]="selectedGuitarId">
     </app-add-or-edit-guitar>
 </div>

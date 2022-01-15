@@ -47,13 +47,27 @@ export class GuitarsService {
   }
 
   postReview(reviewObject: Review): Observable<Review> {
-    return this.http.post<Review>('http://localhost:3000/reviews/', 
+    return this.http.post<Review>('http://localhost:3000/reviews/',
       {
         star: reviewObject.star,
         name: reviewObject.name,
         body: reviewObject.body,
         guitarId: reviewObject.guitar_id
       });
+  }
+
+  postGuitar(formObject: Guitar): Observable<Guitar> {
+    return this.http.post<Guitar>('http://localhost:3000/guitars/',
+    {
+        name: formObject.name,
+        description: formObject.description,
+        longDescription: formObject.longDescription,
+        image: formObject.image,
+        price: formObject.price,
+        specifications: formObject.specifications,
+        category: formObject.category,
+        soldOut: formObject.soldOut
+    })
   }
 
 }

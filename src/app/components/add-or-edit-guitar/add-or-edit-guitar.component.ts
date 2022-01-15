@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Guitar, GuitarsService } from 'src/app/services/guitars.service';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { gotoObject, Guitar, GuitarsService } from 'src/app/services/guitars.service';
 
 type stateType = 'add' | 'edit';
 
@@ -13,6 +13,7 @@ export class AddOrEditGuitarComponent implements OnInit {
   state: stateType;
   formObject: Guitar;
   @Input() guitarId?: string;
+  @Output() goToEvent: EventEmitter<gotoObject> = new EventEmitter();
   @ViewChild('imgOutput') imgOutput: ElementRef;
 
   constructor(private gs: GuitarsService) { }
@@ -39,16 +40,43 @@ export class AddOrEditGuitarComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log(this.formObject);
+
+    if(!this.formObject.name || !this.formObject.price || !this.formObject.description){
+      alert('Enter the details correctly');
+      return;
+    }
+
+    if (this.state === 'add') {
+      this.gs.postGuitar(this.formObject).subscribe((guitar: Guitar) => {
+        console.log(guitar);
+        this.goToEvent.emit({ where: 'listedComponent' });
+      })
+    }
+    else{
+      
+    }
   }
 
   public checkBoxChanged(): void {
     this.formObject.soldOut = this.formObject.soldOut == 'false' ? 'true' : 'false';
   }
 
-  public selectFile(event: any): void {
-    const imagelink = window.URL.createObjectURL(event.target.files[0])
-    this.imgOutput.nativeElement.src = imagelink;
+  public selectFile(event: Event): void {
+
+    const files = event.target as HTMLInputElement;
+
+    if (!files.files?.length) {
+      return;
+    }
+
+    const image = files.files[0];
+    const _this = this;
+    let reader = new FileReader();
+    reader.onloadend = function () {
+      _this.formObject.image = reader.result as string;
+    }
+    reader.readAsDataURL(image);
+
   }
 
 }
